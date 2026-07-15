@@ -16,7 +16,7 @@ const Login = () => {
 
   const handleSubmitBtn=()=>{
     //First validate the form data
-    const validationMessage = validFormData(name.current.value,email.current.value,password.current.value,isSignIn)
+    const validationMessage = validFormData(name.current?.value,email.current?.value,password?.current.value,isSignIn)
     setErrorMessage(validationMessage)
 
   }
