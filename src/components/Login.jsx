@@ -2,10 +2,14 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { login_bg_img } from '../utils/constants'
 import { validFormData } from '../utils/validate'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const[isSignIn,setIsSignIn] = useState(true)
   const[errorMessage,setErrorMessage]=useState(null)
+  const navigateTo = useNavigate()
   const name = useRef(null)
   const email = useRef(null)
   const password = useRef(null)
@@ -16,8 +20,43 @@ const Login = () => {
 
   const handleSubmitBtn=()=>{
     //First validate the form data
-    const validationMessage = validFormData(name.current?.value,email.current?.value,password?.current.value,isSignIn)
-    setErrorMessage(validationMessage)
+    const validationErrorMessage = validFormData(name.current?.value, email.current?.value, password?.current.value, isSignIn)
+    setErrorMessage(validationErrorMessage)
+
+    //if error return 
+    if(validationErrorMessage) return 
+
+    // sign up /sing in using firebase
+
+    if(!isSignIn){
+      //sign up a new user if successfull navigate to browse page else show error
+      createUserWithEmailAndPassword(auth, email.current?.value, password?.current.value)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+          navigateTo("/browse")
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage)
+        });
+    }
+    else{
+      //sign in a existing user if successfull navigate to browse page
+      signInWithEmailAndPassword(auth, email.current?.value, password?.current.value)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          navigateTo("/browse")
+          
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage)
+        });
+    }
 
   }
 
