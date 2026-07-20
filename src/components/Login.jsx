@@ -2,11 +2,14 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { login_bg_img } from '../utils/constants'
 import { validFormData } from '../utils/validate'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../firebase'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../store/userSlice'
 
 const Login = () => {
+  const dispatch = useDispatch()
   const[isSignIn,setIsSignIn] = useState(true)
   const[errorMessage,setErrorMessage]=useState(null)
   const navigateTo = useNavigate()
@@ -16,6 +19,25 @@ const Login = () => {
 
   const toggleIsSignIn =()=>{
     setIsSignIn(!isSignIn)
+  }
+
+  const updateProfileWithName=(user)=>{
+    updateProfile(user, {
+      displayName: name.current?.value
+    }).then(() => {
+      // Profile updated! name added
+      const {uid, displayName, email} = auth.currentUser;
+      const userdetail = {
+            name:displayName,
+            email:email,
+            uid:uid
+        }
+      dispatch(addUser(userdetail))
+      navigateTo("/browse")
+    }).catch((error) => {
+      // An error occurred
+      setErrorMessage(errorMessage)
+    });
   }
 
   const handleSubmitBtn=()=>{
@@ -34,7 +56,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
-          navigateTo("/browse")
+          updateProfileWithName(user)
         })
         .catch((error) => {
           const errorCode = error.code;
