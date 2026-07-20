@@ -3,3 +3,8 @@ export const header_logo = "https://help.nflxext.com/helpcenter/OneTrust/oneTrus
 export const login_bg_img = "https://assets.nflxext.com/ffe/siteui/vlv3/eaa165a3-80a7-44cb-8df6-be1a7e225369/web/IN-en-20260706-TRIFECTA-perspective_2f2fae68-6962-4d52-8cc2-1fe6ef5c6a56_large.jpg"
 
 export const login_user_icon = "https://occ-0-4606-3646.1.nflxso.net/dnm/api/v6/SO2HoVCx33X8phZh2pZZmQ4QgNY/AAAABS8sWFjSyj1zyfgcnGamqyJ1E2ZubZGo8dndCM_ipf_5UpmVlkuf8IXzQlmPZQqTMWNjWukESRdLkFGHnf7zbY3MJCO3r4s.png?r=229"
+
+export const MOVIE_API_OPTION = {
+  method: 'GET',
+  headers: {accept: 'application/json', Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDJlNmYwNjNmMTdhZWIwYjFjOThmNWZhODU0OTk1NSIsIm5iZiI6MTc4NDU0MjA2MC45NTYsInN1YiI6IjZhNWRmMzZjYzBhYzViZGRlMGViNDhjZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.f1mD--eeYCwXQuzL4fPiyJ3m6V_Xpg79jHp4HlvKtkA'}
+};
