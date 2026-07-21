@@ -12,7 +12,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 //User Sign In
                 const {uid, displayName, email} = user;
@@ -30,6 +30,7 @@ const Header = () => {
 
             }
         });
+        return ()=> unsubscribe()
     },[])
 
   const handleSignout=()=>{
