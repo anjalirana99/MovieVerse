@@ -5,10 +5,12 @@ import { auth } from '../firebase'
 import { useNavigate } from 'react-router-dom'
 import { addUser, removeUser } from '../store/userSlice'
 import { useEffect } from 'react'
+import { toggleAISearch } from '../store/AISearchSlice'
 
 const Header = () => {
   const navigateTo = useNavigate()
   const user = useSelector((store)=>store.user)
+  const showAISearch = useSelector((store)=>store.AISearch.showAISearch)
   const dispatch = useDispatch()
 
    useEffect(()=>{
@@ -41,6 +43,10 @@ const Header = () => {
         // An error happened.
       });
     }
+
+    const handleMovieUniverseClick=()=>{
+      dispatch(toggleAISearch())
+    }
   
   return (
     <div className='header absolute w-full px-10 py-5 bg-linear-to-b from-black z-10'>
@@ -49,13 +55,15 @@ const Header = () => {
              <img className="w-40 " src={header_logo} alt="logo"/>
           </div>
           {user && 
-            <div className='flex flex-col cursor-pointer items-center justify-center mx-5 text-white'>
-              <div className='flex gap-3'> 
-                <img src={login_user_icon} alt='user_icn'/>
+            <div className='flex items-center gap-5 justify-center mx-5 text-white'>
+              <button className='cursor-pointer bg-purple-600 py-1 px-4 rounded-lg' onClick={handleMovieUniverseClick}>{showAISearch ? "HomePage" : "Movie Universe"}</button>
+              <img src={login_user_icon} alt='user_icn'/>
+              <div className='flex flex-col cursor-pointer items-center'> 
                 <p>Hi {user.name}!</p>
+                <span className="py-1" onClick={handleSignout}>(Sign Out)</span>
               </div>
              
-              <span className="py-1" onClick={handleSignout}>(Sign Out)</span> 
+               
             </div>
             
             
