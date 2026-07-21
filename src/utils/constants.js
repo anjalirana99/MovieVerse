@@ -8,3 +8,5 @@ export const MOVIE_API_OPTION = {
   method: 'GET',
   headers: {accept: 'application/json', Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDJlNmYwNjNmMTdhZWIwYjFjOThmNWZhODU0OTk1NSIsIm5iZiI6MTc4NDU0MjA2MC45NTYsInN1YiI6IjZhNWRmMzZjYzBhYzViZGRlMGViNDhjZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.f1mD--eeYCwXQuzL4fPiyJ3m6V_Xpg79jHp4HlvKtkA'}
 };
+
+export const CARD_IMG_CDN = "https://image.tmdb.org/t/p/w500"
