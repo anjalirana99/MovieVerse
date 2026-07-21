@@ -1,8 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import MovieList from './MovieList'
 
 const AISearchRecommendations = () => {
+  const AISearch  = useSelector((store)=>store.AISearch)
+  const{moviesName,moviesResult} = AISearch
   return (
-    <div>AISearchRecommendations</div>
+    moviesName ? 
+    <div className='all-listing-container bg-black text-white p-4 m-4 mt-30 opacity-90'>
+      {moviesName.map((moviename,idx)=><MovieList title={moviename} movies={moviesResult[idx]}/>)}
+    </div> : <></>
   )
 }
 

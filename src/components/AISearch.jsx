@@ -7,7 +7,7 @@ const AISearch = () => {
   return (
     <div>
         <div>
-            <img className="h-full w-full object-cover absolute -z-10" src={login_bg_img} alt="bg-img"/>
+            <img className="h-full w-full object-cover fixed -z-10" src={login_bg_img} alt="bg-img"/>
         </div>
         <AISearchBar/>
         <AISearchRecommendations/>
