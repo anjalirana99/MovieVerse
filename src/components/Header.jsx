@@ -56,8 +56,8 @@ const Header = () => {
   
   return (
     <div className='header absolute w-full px-10 py-5 bg-linear-to-b from-black z-10'>
-      <div className='flex justify-between'>
-          <div>
+      <div className='flex flex-col md:flex-row justify-between'>
+          <div className='m-auto md:mx-0'>
              <img className="w-40 " src={header_logo} alt="logo"/>
           </div>
           {user && 
@@ -71,7 +71,7 @@ const Header = () => {
               <button className='cursor-pointer bg-purple-600 py-1 px-4 rounded-lg' onClick={handleMovieUniverseClick}>{showAISearch ? "HomePage" : "Movie Universe"}</button>
               <img src={login_user_icon} alt='user_icn'/>
               <div className='flex flex-col cursor-pointer items-center'> 
-                <p>Hi {user.name}!</p>
+                <p className='hidden md:block'>Hi {user.name}!</p>
                 <span className="py-1" onClick={handleSignout}>(Sign Out)</span>
               </div>
              

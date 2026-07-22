@@ -69,3 +69,8 @@ create aisearch slice
 reused movielist component to show suggested movies on ui 
 memoization - stop redundant calling of movies api when going from aiserach to homepage 
 
+Made our site Responsive 
+bg-black - default 
+md:bg-black - desktop (grater than medium size screen)
+sm:bg-black - tab (greater than small screens) 
+
