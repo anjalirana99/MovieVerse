@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { addUser, removeUser } from '../store/userSlice'
 import { useEffect } from 'react'
 import { toggleAISearch } from '../store/AISearchSlice'
+import { supportedLang } from '../utils/langSetting'
+import { chnageLanguage } from '../store/configSlice'
 
 const Header = () => {
   const navigateTo = useNavigate()
@@ -47,6 +49,10 @@ const Header = () => {
     const handleMovieUniverseClick=()=>{
       dispatch(toggleAISearch())
     }
+
+    const handlelangChange=(e)=>{
+      dispatch(chnageLanguage(e.target.value))
+    }
   
   return (
     <div className='header absolute w-full px-10 py-5 bg-linear-to-b from-black z-10'>
@@ -56,6 +62,12 @@ const Header = () => {
           </div>
           {user && 
             <div className='flex items-center gap-5 justify-center mx-5 text-white'>
+              {showAISearch && 
+                <select className='py-1 px-2' onChange={handlelangChange}>
+                  {supportedLang.map((lang)=><option className='bg-gray-700' value={lang.identifier} key={lang.identifier}>{lang.language}</option>)}
+                  
+                </select>
+              }
               <button className='cursor-pointer bg-purple-600 py-1 px-4 rounded-lg' onClick={handleMovieUniverseClick}>{showAISearch ? "HomePage" : "Movie Universe"}</button>
               <img src={login_user_icon} alt='user_icn'/>
               <div className='flex flex-col cursor-pointer items-center'> 

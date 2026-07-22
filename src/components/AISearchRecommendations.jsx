@@ -8,7 +8,7 @@ const AISearchRecommendations = () => {
   return (
     moviesName ? 
     <div className='all-listing-container bg-black text-white p-4 m-4 mt-30 opacity-90'>
-      {moviesName.map((moviename,idx)=><MovieList title={moviename} movies={moviesResult[idx]}/>)}
+      {moviesName.map((moviename,idx)=><MovieList title={moviename} key={moviename} movies={moviesResult[idx]}/>)}
     </div> : <></>
   )
 }

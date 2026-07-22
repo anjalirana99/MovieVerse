@@ -56,3 +56,16 @@ build Movie Card
 TMDB Image CDN URL
 Made the Browsre page amazing with Tailwind CSS
 usePopularMovies Custom hook
+
+made movie ai search page 
+multi langual app - created config slice 
+get openAi key
+created .env file added to gitignore 
+secuirty keys handling 
+called open ai api 
+fetch movies suggestions from AI 
+fetch movies data of suggested list 
+create aisearch slice 
+reused movielist component to show suggested movies on ui 
+memoization - stop redundant calling of movies api when going from aiserach to homepage 
+
